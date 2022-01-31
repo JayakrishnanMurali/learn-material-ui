@@ -1,10 +1,23 @@
+import { Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import Post from "./Post";
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  container: {
+    paddingTop: theme.spacing(10),
+  },
+}));
 
 function Feed() {
   const classes = useStyles();
-  return <div className="App"></div>;
+  return (
+    <Container className={classes.container}>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </Container>
+  );
 }
 
 export default Feed;

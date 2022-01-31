@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import EmailIcon from "@mui/icons-material/Email";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState } from "react";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: { display: "flex", justifyContent: "space-between" },
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "4px",
     [theme.breakpoints.down("sm")]: {
       display: (props) => (props.open ? "flex" : "none"),
+      width: "80%",
     },
   },
   input: {
@@ -51,6 +53,11 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  cancel: {
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
 }));
 
 function Navbar() {
@@ -59,7 +66,7 @@ function Navbar() {
   const classes = useStyles({ open });
 
   return (
-    <AppBar>
+    <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.logoLg}>
           Jk
@@ -72,12 +79,15 @@ function Navbar() {
           <InputBase
             placeholder="Search..."
             className={classes.input}
-            sx={{ color: "white" }}
+            sx={{ color: "white", marginRight: "3rem" }}
           />
+          <Box className={classes.cancel}>
+            <CancelIcon onClick={() => setOpen(false)} />
+          </Box>
         </div>
         <div className={classes.icons}>
           <Box className={classes.searchButton}>
-            <SearchIcon onClick={() => setOpen(!open)} />
+            <SearchIcon onClick={() => setOpen(true)} />
           </Box>
           <Badge color="secondary" badgeContent={4} className={classes.badge}>
             <EmailIcon />
